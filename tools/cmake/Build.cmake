@@ -15,7 +15,7 @@ add_custom_target(NatVis SOURCES ${EASTL_ROOT_DIR}/doc/EASTL.natvis)
 set(GTESTS_BIN_DIR "D:/Repos/Git/googletest/build/googletest" CACHE PATH "Path to the builded gtest lib")
 set(GTESTS_INCLUDE_DIR "D:/Repos/Git/googletest/googletest/include" CACHE PATH "Path to the include gtests")
 include_directories(${GTESTS_INCLUDE_DIR})
-set(GTESTS_LIBRARY debug ${GTESTS_BIN_DIR}/Debug/gtest.lib optimized ${GTESTS_BIN_DIR}/Release/gtest.lib)
+set(GTESTS_LIBRARY debug ${GTESTS_BIN_DIR}/Debug/gtestd.lib optimized ${GTESTS_BIN_DIR}/Release/gtest.lib)
 
 set(FX11_BIN_DIR "D:/Repos/FX11/build/bin" CACHE PATH "Path to the builded Effect11 lib")
 set(FX11_INCLUDE_DIR "D:/Repos/FX11/build/include" CACHE PATH "Path to the include Effect11 lib")
