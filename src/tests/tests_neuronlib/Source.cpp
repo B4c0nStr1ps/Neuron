@@ -43,3 +43,15 @@ TEST(filesystem, GetFilenameFromPath)
 	auto result_4 = neuron::filesystem::GetFilenameFromPath(path_4);
 	EXPECT_EQ(result_4, "Test");
 }
+
+TEST(filesystem, CombinePaths)
+{
+	neuron::NString path_1 = "C:\\Programs\\";
+	neuron::NString path_2 = "\\MyApp\\Test.sda";
+	auto result = neuron::filesystem::CombinePaths(path_1, path_2);
+	EXPECT_EQ(result, "C:\\Programs\\\\MyApp\\Test.sda");
+
+	path_2 = "MyApp\\Test.sda";
+	result = neuron::filesystem::CombinePaths(path_1, path_2);
+	EXPECT_EQ(result, "C:\\Programs\\MyApp\\Test.sda");
+}
