@@ -1,10 +1,8 @@
 //#pragma comment(lib, "neuron.dll")
 
-#include "..\..\libs\neuron\code\neuron_app.h"
+#include "..\..\libs\neuron\code\neuron.h"
 
-int main()
+int main(int argc, char** argv)
 {
-	neuron::NeuronApp* app = new neuron::NeuronApp();
-
-	return 0;
+	return neuron::NeuronMain(argc, argv);
 }

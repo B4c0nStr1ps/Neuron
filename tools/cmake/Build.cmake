@@ -12,9 +12,13 @@ include_directories (${EASTL_ROOT_DIR}/test/packages/EAThread/include)
 set(EASTL_LIBRARY debug ${EASTL_ROOT_DIR}/build/Debug/EASTL.lib optimized ${EASTL_ROOT_DIR}/build/Release/EASTL.lib)
 add_custom_target(NatVis SOURCES ${EASTL_ROOT_DIR}/doc/EASTL.natvis)
 
+set(GTESTS_BIN_DIR "D:/Repos/Git/googletest/build/googletest" CACHE PATH "Path to the builded gtest lib")
+set(GTESTS_INCLUDE_DIR "D:/Repos/Git/googletest/googletest/include" CACHE PATH "Path to the include gtests")
+include_directories(${GTESTS_INCLUDE_DIR})
+set(GTESTS_LIBRARY debug ${GTESTS_BIN_DIR}/Debug/gtest.lib optimized ${GTESTS_BIN_DIR}/Release/gtest.lib)
+
 set(FX11_BIN_DIR "D:/Repos/FX11/build/bin" CACHE PATH "Path to the builded Effect11 lib")
 set(FX11_INCLUDE_DIR "D:/Repos/FX11/build/include" CACHE PATH "Path to the include Effect11 lib")
-
 include_directories(${FX11_INCLUDE_DIR})
 set(FX11_LIBRARY debug ${FX11_BIN_DIR}/Effects11d.lib optimized ${FX11_BIN_DIR}/Effects11.lib)
 
@@ -51,3 +55,14 @@ if(MSVC)
 endif()
 set_target_properties(GameDemo1 PROPERTIES FOLDER Demo)
 target_link_libraries(GameDemo1 neuron)
+
+#build tests project
+GetFilesWithSourceGroups(GLOB_RECURSE GTESTS_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/tests/tests_neuronlib)
+add_executable(TestsNeuron ${GTESTS_FILES})
+if(MSVC)
+    target_compile_definitions(TestsNeuron PUBLIC -DUNICODE -D_UNICODE)
+endif()
+set_target_properties(TestsNeuron PROPERTIES FOLDER Tests)
+target_link_libraries(TestsNeuron neuron)
+target_link_libraries(TestsNeuron ${EASTL_LIBRARY})
+target_link_libraries(TestsNeuron ${GTESTS_LIBRARY})
