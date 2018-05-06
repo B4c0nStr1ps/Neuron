@@ -1,6 +1,7 @@
 #pragma once
 #include "core\neuron_types.h"
 #include <EASTL\unique_ptr.h>
+#include "settings.h"
 
 namespace neuron {
 
@@ -20,7 +21,7 @@ public:
 	NString Name();
 	NString DataDirectory();
 	NString AppDirectory();
-	void Startup();
+	bool Startup();
 	void Shutdown();
 	/*virtual void Startup() = 0;
 	virtual void Shutdown() = 0;
@@ -32,7 +33,9 @@ private:
 
 	NString app_name_;
 	NString app_directory_;
-	NString data_directory_rel_;
+	NString data_directory_;
+
+	ProjectSettings project_settings_;
 
 };
 } // namespace neuron

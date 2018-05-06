@@ -17,6 +17,11 @@ int NeuronMain(int argc, char ** argv)
 	DEBUG_LOG("Application name: %s", app->Name().c_str());
 	DEBUG_LOG("Application data folder: %s", app->DataDirectory().c_str());
 
+	if (!app->Startup())
+	{
+		return 1;
+	}
+
 	return 0;
 }
 
