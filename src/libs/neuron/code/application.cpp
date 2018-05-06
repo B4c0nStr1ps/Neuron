@@ -1,4 +1,5 @@
 #include "application.h"
+#include "core\debug.h"
 #include "core\filesystem.h"
 
 namespace neuron {

@@ -1,5 +1,6 @@
 #include "neuron.h"
 #include "application.h"
+#include "core\debug.h"
 
 #include <iostream>
 
@@ -7,22 +8,14 @@ namespace neuron{
 
 int NeuronMain(int argc, char ** argv)
 {
-	if (argc <= 0)
-	{
-		std::cerr << "Invalid construction argument. No argument are passed in.\n";
-		return 1;
-	}
+	DEBUG_ASSERT_MSG(argc > 0, "Invalid construction argument. No argument are passed in.\n");
 
 	auto app = eastl::make_unique<Application>(argv[0]);
-	if (app == nullptr)
-	{
-		std::cerr << "Error trying to construct the applicaiton class.\n";
-		return 1;
-	}
+	DEBUG_ASSERT_MSG(app != nullptr, "Error trying to construct the applicaiton class.\n");
 
-	std::cout << "Application directory: " << app->AppDirectory().c_str() << std::endl;
-	std::cout << "Application name: " << app->Name().c_str() << std::endl;
-	std::cout << "Application data folder: " << app->DataDirectory().c_str() << std::endl;
+	DEBUG_LOG("Application directory: %s", app->AppDirectory().c_str());
+	DEBUG_LOG("Application name: %s", app->Name().c_str());
+	DEBUG_LOG("Application data folder: %s", app->DataDirectory().c_str());
 
 	return 0;
 }
